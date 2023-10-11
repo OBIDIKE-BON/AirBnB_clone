@@ -2,6 +2,7 @@
 """a module that contains the entry point of the command interpreter"""
 import cmd
 from models.base_model import BaseModel
+from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
@@ -13,7 +14,7 @@ class HBNBCommand(cmd.Cmd):
         self.prompt = "(hbnb) "
 
     def do_create(self, arg):
-        """Creates a new instance of BaseModel, 
+        """Creates a new instance of BaseModel,
             saves it (to the JSON file) and prints the id
         """
         if arg == '':
@@ -26,18 +27,26 @@ class HBNBCommand(cmd.Cmd):
             print(new.id)
 
     def do_show(self, arg):
-        """Prints the string representation of an instance 
+        """Prints the string representation of an instance
             based on the class name and id
         """
+
         args = arg.split()
-        if args[0] == '':
+        if len(args) == 0:
             print('** class name missing **')
         elif args[0] != 'BaseModel':
             print("** class doesn't exist **")
         elif len(args) == 1:
             print("** instance id missing **")
-
-
+        else:
+            objects = storage.all()
+            value = args[0] + '.' + args[1]
+            for obj_id in objects.keys():
+                if value == obj_id:
+                    print(objects[value])
+                    break
+            else:
+                print('** no instance found **')
 
     def emptyline(self):
         """overrides the behavior of pressing enter"""
