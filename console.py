@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """a module that contains the entry point of the command interpreter"""
 import cmd
+from models.base_model import BaseModel
 
 
 class HBNBCommand(cmd.Cmd):
@@ -10,6 +11,33 @@ class HBNBCommand(cmd.Cmd):
         """initializes the intepreter instance"""
         cmd.Cmd.__init__(self)
         self.prompt = "(hbnb) "
+
+    def do_create(self, arg):
+        """Creates a new instance of BaseModel, 
+            saves it (to the JSON file) and prints the id
+        """
+        if arg == '':
+            print('** class name missing **')
+        elif arg != 'BaseModel':
+            print("** class doesn't exist **")
+        else:
+            new = f'{arg}()'
+            new.save()
+            print(new.id)
+
+    def do_show(self, arg):
+        """Prints the string representation of an instance 
+            based on the class name and id
+        """
+        args = arg.split()
+        if args[0] == '':
+            print('** class name missing **')
+        elif args[0] != 'BaseModel':
+            print("** class doesn't exist **")
+        elif len(args) == 1:
+            print("** instance id missing **")
+
+
 
     def emptyline(self):
         """overrides the behavior of pressing enter"""
