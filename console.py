@@ -21,7 +21,7 @@ class HBNBCommand(cmd.Cmd):
         elif arg != 'BaseModel':
             print("** class doesn't exist **")
         else:
-            new = f'{arg}()'
+            new = eval(arg + '()')
             new.save()
             print(new.id)
 
