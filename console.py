@@ -21,7 +21,7 @@ class HBNBCommand(cmd.Cmd):
         elif arg != 'BaseModel':
             print("** class doesn't exist **")
         else:
-            new = f'{arg}()'
+            new = eval(arg + '()')
             new.save()
             print(new.id)
 
@@ -45,7 +45,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_quit(self, arg):
         """command to quit or exit the interpreter"""
-        return True
+        exit(0)
 
     # shortcuts
     do_EOF = do_quit
