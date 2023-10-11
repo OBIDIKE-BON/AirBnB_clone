@@ -19,7 +19,7 @@ class FileStorage:
     def new(self, obj):
         """adds an object into the dictionary __objects"""
         name = obj.__class__.__name__
-        obj_id = obj.id 
+        obj_id = obj.id
         self.__objects[f"{name}.{obj_id}"] = obj
 
     def save(self):
@@ -34,7 +34,8 @@ class FileStorage:
             with open(self.__file_path, 'r', encoding='utf8') as f:
                 objects = json.load(f)
                 from models.base_model import BaseModel
-                self.__objects = {k: BaseModel(v) for k, v in objects.items()}
+                self.__objects = {k: BaseModel(**v)
+                                  for k, v in objects.items()}
                 return self.__objects
         except Exception:
             return self.__objects

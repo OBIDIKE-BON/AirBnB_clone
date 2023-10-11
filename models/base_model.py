@@ -26,6 +26,7 @@ class BaseModel:
                     pass
                 else:
                     self.__dict__[k] = v
+            self.__dict__.pop('__class__')
         else:
             storage.new(self)
 
