@@ -8,6 +8,15 @@ from models import storage
 
 class HBNBCommand(cmd.Cmd):
     """the command interpreter class inheriting from the cmd module"""
+    cls_names =[
+        'BaseModel',
+        'User',
+        'State',
+        'City',
+        'Amenity',
+        'Place',
+        'Review'
+    ]
 
     def __init__(self):
         """initializes the intepreter instance"""
@@ -20,7 +29,7 @@ class HBNBCommand(cmd.Cmd):
         """
         if arg == '':
             print('** class name missing **')
-        elif arg != 'BaseModel':
+        elif arg not in self.cls_names:
             print("** class doesn't exist **")
         else:
             new = eval(arg + '()')
