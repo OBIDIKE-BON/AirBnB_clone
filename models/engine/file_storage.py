@@ -35,8 +35,13 @@ class FileStorage:
                 objects = json.load(f)
                 from models.base_model import BaseModel
                 from models.user import User
-                self.__objects = {k: User(**v)
-                                  for k, v in objects.items()}
+                for obj in objects.keys():
+                    name = obj.split('.')
+                    if name[0] == 'BaseModel':
+                        self.__objects[obj] = BaseModel(**objects[obj])
+                    elif name[0] == 'User':
+                        self.__objects[obj] = User(**objects[obj])
+
                 return self.__objects
-        except Exception:
+        except Exception as ep:
             return self.__objects
