@@ -3,12 +3,13 @@
 import shlex
 import cmd
 from models.base_model import BaseModel
+from models.user import User
 from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
     """the command interpreter class inheriting from the cmd module"""
-    cls_names =[
+    cls_names = [
         'BaseModel',
         'User',
         'State',
