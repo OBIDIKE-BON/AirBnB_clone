@@ -34,7 +34,8 @@ class FileStorage:
             with open(self.__file_path, 'r', encoding='utf8') as f:
                 objects = json.load(f)
                 from models.base_model import BaseModel
-                self.__objects = {k: BaseModel(**v)
+                from models.user import User
+                self.__objects = {k: User(**v)
                                   for k, v in objects.items()}
                 return self.__objects
         except Exception:
