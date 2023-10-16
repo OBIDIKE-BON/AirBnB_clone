@@ -1,13 +1,5 @@
-<p align="center">
-  <img src="https://github.com/OBIDIKE-BON/AirBnB_clone/hbnb_logo.png?raw=true" alt="HBnB logo">
-</p>
-
 <h1 align="center">Boniface && Sadson</h1>
 <p align="center">An AirBnB clone.</p>
-
-<p align="center">
-  <img src="https://github.com/OBIDIKE-BON/AirBnB_clone/icon.png" alt="HBnB logo">
-</p>
 
 ---
 
