@@ -49,7 +49,9 @@ cls_names = [
 class HBNBCommand(cmd.Cmd):
     """the command interpreter class inheriting from the cmd module"""
 
-    prompt = "(hbnb) "
+    def __init__(self):
+        """initializes the intepreter instance"""
+        self.prompt = "(hbnb) "
 
     def do_create(self, arg):
         """Creates a new instance of BaseModel,
