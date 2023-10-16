@@ -37,7 +37,7 @@ def get_cls(objects):
 
 cls_names = [
     'BaseModel',
-    'User'
+    'User',
     'State',
     'City',
     'Amenity',
