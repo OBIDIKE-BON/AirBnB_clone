@@ -35,17 +35,19 @@ def get_cls(objects):
     return cls
 
 
+cls_names = [
+    'BaseModel',
+    'User'
+    'State',
+    'City',
+    'Amenity',
+    'Place',
+    'Review'
+]
+
+
 class HBNBCommand(cmd.Cmd):
     """the command interpreter class inheriting from the cmd module"""
-    cls_names = [
-        'BaseModel',
-        'User'
-        'State',
-        'City',
-        'Amenity',
-        'Place',
-        'Review'
-    ]
 
     def __init__(self):
         """initializes the intepreter instance"""
@@ -71,10 +73,11 @@ class HBNBCommand(cmd.Cmd):
         """
 
         args = arg.split()
+        cls = get_cls(objects)
         ln = len(args)
         if ln == 0:
             print('** class name missing **')
-        elif args[0] != 'BaseModel':
+        elif args[0] not in cls:
             print("** class doesn't exist **")
         elif ln == 1:
             print("** instance id missing **")
@@ -94,10 +97,11 @@ class HBNBCommand(cmd.Cmd):
         """
 
         args = arg.split()
+        cls = get_cls(objects)
         ln = len(args)
         if ln == 0:
             print('** class name missing **')
-        elif args[0] != 'BaseModel':
+        elif args[0] not in cls:
             print("** class doesn't exist **")
         elif ln == 1:
             print("** instance id missing **")
