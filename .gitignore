@@ -1,6 +1,7 @@
 # exclude pycache files
 __pycache__/
 
+test_7.py
 # Prerequisites
 *.d
 
