@@ -35,11 +35,27 @@ class FileStorage:
                 objects = json.load(f)
                 from models.base_model import BaseModel
                 from models.user import User
+                from models.place import Place
+                from models.state import State
+                from models.city import City
+                from models.amenity import Amenity
+                from models.review import Review
+
                 for obj in objects.keys():
                     name = obj.split('.')
                     if name[0] == 'BaseModel':
                         self.__objects[obj] = BaseModel(**objects[obj])
                     elif name[0] == 'User':
+                        self.__objects[obj] = User(**objects[obj])
+                    elif name[0] == 'Place':
+                        self.__objects[obj] = User(**objects[obj])
+                    elif name[0] == 'State':
+                        self.__objects[obj] = User(**objects[obj])
+                    elif name[0] == 'City':
+                        self.__objects[obj] = User(**objects[obj])
+                    elif name[0] == 'Amenity':
+                        self.__objects[obj] = User(**objects[obj])
+                    elif name[0] == 'Review':
                         self.__objects[obj] = User(**objects[obj])
 
                 return self.__objects
