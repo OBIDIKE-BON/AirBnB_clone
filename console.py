@@ -40,11 +40,11 @@ class HBNBCommand(cmd.Cmd):
     cls_names = [
         'BaseModel',
         'User'
-        # 'State',
-        # 'City',
-        # 'Amenity',
-        # 'Place',
-        # 'Review'
+        'State',
+        'City',
+        'Amenity',
+        'Place',
+        'Review'
     ]
 
     def __init__(self):
