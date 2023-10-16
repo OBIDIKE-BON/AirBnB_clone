@@ -15,4 +15,3 @@ class TestBaseModel(unittest.TestCase):
         
         self.assertIsInstance(self.model1.to_dict(), dict)
         self.assertIsInstance(self.model2.to_dict(), dict)
-
