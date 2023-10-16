@@ -48,15 +48,15 @@ class FileStorage:
                     elif name[0] == 'User':
                         self.__objects[obj] = User(**objects[obj])
                     elif name[0] == 'Place':
-                        self.__objects[obj] = User(**objects[obj])
+                        self.__objects[obj] = Place(**objects[obj])
                     elif name[0] == 'State':
-                        self.__objects[obj] = User(**objects[obj])
+                        self.__objects[obj] = State(**objects[obj])
                     elif name[0] == 'City':
-                        self.__objects[obj] = User(**objects[obj])
+                        self.__objects[obj] = City(**objects[obj])
                     elif name[0] == 'Amenity':
-                        self.__objects[obj] = User(**objects[obj])
+                        self.__objects[obj] = Amenity(**objects[obj])
                     elif name[0] == 'Review':
-                        self.__objects[obj] = User(**objects[obj])
+                        self.__objects[obj] = Review(**objects[obj])
 
                 return self.__objects
         except Exception as ep:
