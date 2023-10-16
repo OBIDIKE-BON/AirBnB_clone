@@ -107,13 +107,12 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
         else:
             value = args[0] + '.' + args[1]
-            for obj_id in objects.keys():
-                if value == obj_id:
-                    objects.pop(value)
-                    storage.save()
-                    break
-                else:
-                    print('** no instance found **')
+            ids = get_ids(objects)
+            if args[1] in ids:
+                objects.pop(value)
+                storage.save()
+            else:
+                print('** no instance found **')
 
     def do_update(self, arg):
         """Updates an instance based on the class name and id.
