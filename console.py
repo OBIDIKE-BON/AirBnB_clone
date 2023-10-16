@@ -51,7 +51,6 @@ class HBNBCommand(cmd.Cmd):
 
     def __init__(self):
         """initializes the intepreter instance"""
-        cmd.Cmd.__init__(self)
         self.prompt = "(hbnb) "
 
     def do_create(self, arg):
