@@ -7,6 +7,34 @@ from models.user import User
 from models import storage
 
 
+def compute_update(args, ln, v):
+    if ln >= 3:
+        if ln >= 4:
+            v.__dict__[args[2]] = args[3]
+            v.save()
+            return
+        else:
+            print("** value missing **")
+            return
+    else:
+        print("** attribute name missing **")
+        return
+
+
+def get_ids(objects):
+    ids = []
+    for key in objects.keys():
+        ids.append(key.split('.')[1])
+    return ids
+
+
+def get_cls(objects):
+    cls = []
+    for key in objects.keys():
+        cls.append(key.split('.')[0])
+    return cls
+
+
 class HBNBCommand(cmd.Cmd):
     """the command interpreter class inheriting from the cmd module"""
     cls_names = [
@@ -89,35 +117,25 @@ class HBNBCommand(cmd.Cmd):
         """
         args = shlex.split(arg)
         objects = storage.all()
-        # ['BaseModel'] (b10f4462-d815-450f-8700-d9041b75248f)
-        
         ln = len(args)
         if ln >= 1:
-            for k, v in objects.items():
-                class_name = k.split('.')
-                if args[0] == class_name[0]:
-                    if ln >= 2:
-                        if args[1] == class_name[1]:
-                            if ln >= 3:
-                                if ln >= 4:
-                                    v.__dict__[args[2]] = args[3]
-                                    v.save()
-                                    return
-                                else:
-                                    print("** value missing **")
-                                    return
-                            else:
-                                print("** attribute name missing **")
-                                return
-                        else:
-                            print("** no instance found **")
-                            return
+            cls = get_cls(objects)
+            ids = get_ids(objects)
+            if args[0] in cls:
+                if ln >= 2:
+                    if args[1] in ids:
+                        key = f"{args[0]}.{args[1]}"
+                        v = objects[key]
+                        return compute_update(args, ln, v)
                     else:
-                        print("** instance id missing **")
+                        print("** no instance found **")
                         return
                 else:
-                    print("** class doesn't exist **")
+                    print("** instance id missing **")
                     return
+            else:
+                print("** class doesn't exist **")
+                return
         else:
             print("** class name missing **")
             return
@@ -135,7 +153,7 @@ class HBNBCommand(cmd.Cmd):
             print(my_obj)
             return
 
-        for k, v in objectus.items():
+        for k, v in objects.items():
             class_name = k.split('.')
             if arg == class_name[0]:
                 my_obj.append(str(v))
@@ -158,3 +176,4 @@ class HBNBCommand(cmd.Cmd):
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
+
