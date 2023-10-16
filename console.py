@@ -72,6 +72,7 @@ class HBNBCommand(cmd.Cmd):
         based on the class name and id
         """
 
+        objects = storage.all()
         args = arg.split()
         cls = get_cls(objects)
         ln = len(args)
@@ -82,7 +83,6 @@ class HBNBCommand(cmd.Cmd):
         elif ln == 1:
             print("** instance id missing **")
         else:
-            objects = storage.all()
             value = args[0] + '.' + args[1]
             for obj_id in objects.keys():
                 if value == obj_id:
@@ -96,6 +96,7 @@ class HBNBCommand(cmd.Cmd):
         and id (save the change into the JSON file)
         """
 
+        objects = storage.all()
         args = arg.split()
         cls = get_cls(objects)
         ln = len(args)
@@ -106,7 +107,6 @@ class HBNBCommand(cmd.Cmd):
         elif ln == 1:
             print("** instance id missing **")
         else:
-            objects = storage.all()
             value = args[0] + '.' + args[1]
             for obj_id in objects.keys():
                 if value == obj_id:
