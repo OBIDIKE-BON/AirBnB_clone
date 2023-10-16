@@ -11,12 +11,12 @@ class HBNBCommand(cmd.Cmd):
     """the command interpreter class inheriting from the cmd module"""
     cls_names = [
         'BaseModel',
-        'User',
-        'State',
-        'City',
-        'Amenity',
-        'Place',
-        'Review'
+        'User'
+        # 'State',
+        # 'City',
+        # 'Amenity',
+        # 'Place',
+        # 'Review'
     ]
 
     def __init__(self):
@@ -89,6 +89,8 @@ class HBNBCommand(cmd.Cmd):
         """
         args = shlex.split(arg)
         objects = storage.all()
+        # ['BaseModel'] (b10f4462-d815-450f-8700-d9041b75248f)
+        
         ln = len(args)
         if ln >= 1:
             for k, v in objects.items():
